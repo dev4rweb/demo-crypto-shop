@@ -1,0 +1,14 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    public function run(): void
+    {
+        // DemoSeeder is idempotent and is not called here.
+        // php artisan db:seed --class=DemoSeeder
+    }
+}

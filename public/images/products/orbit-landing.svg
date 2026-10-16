@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7c5cff"/>
+      <stop offset="1" stop-color="#32f0ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="#05070a"/>
+  <rect x="40" y="40" width="720" height="420" fill="none" stroke="#c6ff3d" stroke-width="2"/>
+  <polygon points="80,400 220,140 360,400" fill="url(#g)" opacity="0.85"/>
+  <circle cx="560" cy="220" r="120" fill="none" stroke="#32f0ff" stroke-width="8"/>
+  <rect x="500" y="280" width="180" height="18" fill="#c6ff3d"/>
+  <text x="80" y="80" fill="#32f0ff" font-family="monospace" font-size="18">NEXUS // DIGITAL</text>
+  <text x="80" y="460" fill="#c6ff3d" font-family="sans-serif" font-size="28" font-weight="700">Orbit Landing</text>
+</svg>

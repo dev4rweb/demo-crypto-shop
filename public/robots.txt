@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://demo-crypto-shop.dev4rweb.com/sitemap.xml
