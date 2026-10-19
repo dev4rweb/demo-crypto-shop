@@ -45,7 +45,7 @@ Document root is the **project root**. Root `.htaccess` routes into `public/`. `
 
 PHP 8.3 binary: `/opt/alt/php83/usr/bin/php`
 
-Never put the database password in the repo. Fill `DB_USERNAME`, `DB_PASSWORD`, `MAIL_PASSWORD` and optional payment/Telegram keys in `.env` on the server.
+Never put the database password in the repo. Fill `DB_USERNAME`, `DB_PASSWORD`, `MAIL_PASSWORD` and optional payment/Telegram/Google keys in `.env` on the server.
 
 ```bash
 cd /home/USER/domains/demo-crypto-shop.dev4rweb.com
@@ -66,7 +66,15 @@ Cron (once per minute):
 
 The scheduler runs `payments:monitor` every minute and, when `QUEUE_CONNECTION=database`, `queue:work --stop-when-empty`.
 
-Mail uses Hostinger SMTP (`MAIL_MAILER=smtp`, `MAIL_HOST=smtp.hostinger.com`, `MAIL_PORT=465`, `MAIL_SCHEME=smtps`, from `noreply@dev4rweb.com`).
+Mail uses Hostinger SMTP (`MAIL_MAILER=smtp`, `MAIL_HOST=smtp.hostinger.com`, `MAIL_PORT=465`, `MAIL_SCHEME=smtps`, from `noreply@dev4rweb.com`). Order, payment and one-time login emails are sent immediately (not queued) so a missing worker does not hide them.
+
+## Passwordless customer sign-in
+
+Buyers can continue with Google or receive a 15-minute, single-use email link. No password is required. A new buyer account is created automatically and guest orders with the same email are attached.
+
+- Empty `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` hides the Google button and One Tap prompt.
+- Authorized redirect URI: `https://demo-crypto-shop.dev4rweb.com/auth/google/callback` (`GOOGLE_REDIRECT_URI`).
+- Admin and manager accounts cannot use Google or the email link. They keep the password login (`demo123456` on this demo).
 
 Telegram is one platform bot. Empty `TELEGRAM_BOT_TOKEN` / `TELEGRAM_BOT_USERNAME` hides Connect Telegram. After deploy:
 

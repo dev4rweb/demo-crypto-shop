@@ -99,6 +99,24 @@ if (! function_exists('public_download_url')) {
     }
 }
 
+if (! function_exists('google_client_id')) {
+    function google_client_id(): ?string
+    {
+        $id = trim((string) config('services.google.client_id'));
+
+        return $id !== '' ? $id : null;
+    }
+}
+
+if (! function_exists('google_oauth_ready')) {
+    function google_oauth_ready(): bool
+    {
+        $secret = trim((string) config('services.google.client_secret'));
+
+        return google_client_id() !== null && $secret !== '';
+    }
+}
+
 if (! function_exists('map_delivery_payload')) {
     /**
      * @param  array<string, mixed>|null  $payload

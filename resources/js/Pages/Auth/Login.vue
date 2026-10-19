@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
+import PasswordlessAuth from '@/Components/PasswordlessAuth.vue';
 import GuestLayout from '@/Layouts/GuestLayout.vue';
 import { useI18n } from '@/composables/useI18n';
 
@@ -50,7 +51,11 @@ const submit = () => {
             <p class="font-mono text-[11px] text-muted">{{ t('common.password') }}: demo123456</p>
         </div>
         <p v-if="status" class="mt-3 text-lime">{{ status }}</p>
-        <form class="mt-6 space-y-4" @submit.prevent="submit">
+        <div class="mt-6">
+            <PasswordlessAuth />
+        </div>
+        <p class="mt-6 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-muted">{{ t('auth.or_password') }}</p>
+        <form class="mt-4 space-y-4" @submit.prevent="submit">
             <input v-model="form.email" type="email" required class="w-full border-line bg-transparent" placeholder="name@example.com" />
             <p v-if="form.errors.email" class="text-sm text-danger">{{ form.errors.email }}</p>
             <input v-model="form.password" type="password" required class="w-full border-line bg-transparent" :placeholder="t('common.password')" />
