@@ -60,6 +60,7 @@ const submit = () => {
         <SeoHead />
         <section class="mx-auto max-w-3xl px-4 py-10">
             <h1 class="font-display text-4xl">{{ t('checkout.title') }}</h1>
+            <p class="mt-3 text-sm text-muted">{{ t('checkout.guest_note') }}</p>
             <p v-if="!cart.items.length" class="mt-6 text-muted">
                 {{ t('checkout.empty') }}
                 <Link :href="locRoute('welcome')" class="text-lime">{{ t('nav.catalog') }}</Link>

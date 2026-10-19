@@ -27,7 +27,7 @@ test('simulate payment walks waiting to confirmed and releases keys', function (
         'ETH',
     );
 
-    $this->postJson('/pay/'.$payment->id.'/simulate')->assertOk();
+    $this->postJson('/pay/'.$payment->uuid.'/simulate')->assertOk();
 
     $fresh = $payment->fresh();
     expect($fresh->simulation_started_at)->not->toBeNull()

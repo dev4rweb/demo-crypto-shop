@@ -1,0 +1,1 @@
+import{_ as t}from"./ShopLayout-BNvsMylf.js";import{o as e,c as o,w as _,b as s,q as c}from"./app-DExspGJ_.js";const r={class:"mx-auto max-w-md px-4 py-16"},l={class:"glass p-6"},i={__name:"GuestLayout",setup(n){return(a,m)=>(e(),o(t,null,{default:_(()=>[s("div",r,[s("div",l,[c(a.$slots,"default")])])]),_:3}))}};export{i as _};

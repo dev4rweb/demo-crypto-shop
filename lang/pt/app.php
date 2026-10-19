@@ -47,6 +47,7 @@ return [
         'digital' => 'Digital — enviar ligações e chaves agora', 'physical' => 'Cópia física (morada opcional)',
         'coin' => 'Pagar com', 'promo' => 'Código promo', 'apply' => 'Aplicar', 'pay' => 'Criar fatura',
         'empty' => 'O carrinho está vazio.', 'quote_error' => 'Não foi possível calcular o total.',
+        'guest_note' => 'Encomendas de convidado não precisam de conta. Ou entre com buyer@example.com / demo123456.',
     ],
     'pay' => [
         'meta_title' => 'Pagar com cripto — Nexus', 'meta_description' => 'Leia o QR, envie o montante exato e siga as confirmações ao vivo.',
@@ -57,7 +58,17 @@ return [
         'copy_address' => 'Copiar endereço', 'copy_amount' => 'Copiar montante', 'expires' => 'A fatura expira em',
         'network' => 'Rede', 'amount' => 'Montante', 'address' => 'Endereço', 'txid' => 'Transação',
         'delivered' => 'Os seus ficheiros estão prontos', 'key' => 'Chave de licença', 'link' => 'Descarregar',
-        'back_store' => 'Voltar à loja', 'orders' => 'As minhas encomendas',
+        'back_store' => 'Voltar à loja', 'orders' => 'As minhas encomendas', 'open_order' => 'Abrir página da encomenda',
+    ],
+    'guest_order' => [
+        'meta_title' => 'Encomenda — Nexus',
+        'title' => 'A sua encomenda',
+    ],
+    'downloads' => [
+        'meta_title' => 'Transferência — Nexus',
+        'title' => 'Transferência demo',
+        'body' => 'Este ficheiro de demonstração está disponível porque a encomenda foi paga.',
+        'file' => 'Descarregar ficheiro',
     ],
     'account' => [
         'meta_title' => 'As minhas encomendas — Nexus', 'meta_description' => 'Histórico e estado de pagamento.',
@@ -98,7 +109,8 @@ return [
     'auth' => [
         'login' => 'Entrar', 'register' => 'Criar conta', 'remember' => 'Lembrar-me', 'forgot' => 'Esqueceu a palavra-passe?',
         'no_account' => 'Precisa de conta?', 'has_account' => 'Já registado?', 'confirm_password' => 'Confirmar palavra-passe',
-        'reset' => 'Repor', 'email_link' => 'Enviar ligação', 'demo_hint' => 'As contas demo estão na página inicial.',
+        'reset' => 'Repor', 'email_link' => 'Enviar ligação',
+        'demo_hint' => 'Entradas demo com um clique. Palavra-passe para todos: demo123456.', 'fill' => 'Preencher',
     ],
     'admin' => [
         'meta_description' => 'Terminal do operador Nexus', 'dashboard_title' => 'Terminal', 'orders_title' => 'Encomendas',
@@ -126,6 +138,7 @@ return [
         'created_hint' => 'Se a fatura expirar, inicie um novo checkout. Os artigos digitais chegam automaticamente após o pagamento.',
         'paid_subject' => 'Encomenda Nexus :number paga — os seus ficheiros', 'paid_title' => 'Pagamento confirmado',
         'paid_body' => 'Olá :name, o pagamento da encomenda :number está confirmado. Chaves e ligações abaixo.',
+        'open_order' => 'Abrir a página da encomenda',
     ],
     'categories' => ['templates' => 'Templates', 'licenses' => 'Licenças', 'courses' => 'Cursos', 'gift-cards' => 'Cartões presente'],
     'products' => [

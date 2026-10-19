@@ -55,3 +55,65 @@ if (! function_exists('format_usd')) {
         return '$'.number_format($cents / 100, 2, '.', ',');
     }
 }
+
+if (! function_exists('signed_order_url')) {
+    function signed_order_url(\App\Models\Order $order): string
+    {
+        $locale = $order->locale;
+        $supported = config('localization.supported', []);
+
+        if (is_string($locale) && $locale !== '' && in_array($locale, $supported, true)) {
+            return Illuminate\Support\Facades\URL::signedRoute('locale.orders.show', [
+                'locale' => $locale,
+                'uuid' => $order->uuid,
+            ]);
+        }
+
+        return Illuminate\Support\Facades\URL::signedRoute('orders.show', [
+            'uuid' => $order->uuid,
+        ]);
+    }
+}
+
+if (! function_exists('signed_download_url')) {
+    function signed_download_url(string $slug): string
+    {
+        return Illuminate\Support\Facades\URL::signedRoute('downloads.show', [
+            'slug' => $slug,
+        ]);
+    }
+}
+
+if (! function_exists('public_download_url')) {
+    function public_download_url(?string $url): ?string
+    {
+        if (! is_string($url) || $url === '') {
+            return null;
+        }
+
+        if (preg_match('#/downloads/([A-Za-z0-9_-]+)#', $url, $matches)) {
+            return signed_download_url($matches[1]);
+        }
+
+        return $url;
+    }
+}
+
+if (! function_exists('map_delivery_payload')) {
+    /**
+     * @param  array<string, mixed>|null  $payload
+     * @return array<string, mixed>|null
+     */
+    function map_delivery_payload(?array $payload): ?array
+    {
+        if ($payload === null) {
+            return null;
+        }
+
+        if (! empty($payload['url']) && is_string($payload['url'])) {
+            $payload['url'] = public_download_url($payload['url']);
+        }
+
+        return $payload;
+    }
+}

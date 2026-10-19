@@ -22,7 +22,7 @@ class AccountOrderController extends Controller
                 'created_at' => $order->created_at?->toIso8601String(),
                 'coin' => $order->latestPayment?->coin,
                 'payment_status' => $order->latestPayment?->status,
-                'payment_id' => $order->latestPayment?->id,
+                'payment_uuid' => $order->latestPayment?->uuid,
             ]),
         ]);
     }
@@ -44,10 +44,10 @@ class AccountOrderController extends Controller
                     'name' => $item->name,
                     'quantity' => $item->quantity,
                     'unit_price_usd_cents' => $item->unit_price_usd_cents,
-                    'delivery_payload' => $order->isPaid() ? $item->delivery_payload : null,
+                    'delivery_payload' => $order->isPaid() ? map_delivery_payload($item->delivery_payload) : null,
                 ]),
                 'payment' => $order->latestPayment ? [
-                    'id' => $order->latestPayment->id,
+                    'uuid' => $order->latestPayment->uuid,
                     'status' => $order->latestPayment->status,
                     'coin' => $order->latestPayment->coin,
                     'amount_crypto' => $order->latestPayment->amount_crypto,

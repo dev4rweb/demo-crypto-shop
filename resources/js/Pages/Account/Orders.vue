@@ -24,7 +24,7 @@ const money = (cents) => `$${(cents / 100).toLocaleString('en-US', { minimumFrac
                         <p class="text-muted">{{ order.status }} · {{ order.coin }}</p>
                     </div>
                     <p class="font-mono tabular text-lime">{{ money(order.total_usd_cents) }}</p>
-                    <Link v-if="order.payment_id" :href="locRoute('checkout.pay', { payment: order.payment_id })" class="ghost-btn !py-1">
+                    <Link v-if="order.payment_uuid" :href="locRoute('checkout.pay', { payment: order.payment_uuid })" class="ghost-btn !py-1">
                         {{ t('account.open_invoice') }}
                     </Link>
                 </li>

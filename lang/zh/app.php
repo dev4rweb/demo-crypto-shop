@@ -47,6 +47,7 @@ return [
         'digital' => '数字 — 立即发送链接和密钥', 'physical' => '实体备份（可选地址）',
         'coin' => '支付币种', 'promo' => '优惠码', 'apply' => '应用', 'pay' => '创建账单',
         'empty' => '购物车是空的。', 'quote_error' => '无法计算合计。',
+        'guest_note' => '访客下单无需账户。也可使用 buyer@example.com / demo123456 登录。',
     ],
     'pay' => [
         'meta_title' => '加密支付 — Nexus', 'meta_description' => '扫描二维码，发送精确金额，实时查看确认数。',
@@ -55,7 +56,17 @@ return [
         'simulate' => '模拟付款', 'simulate_hint' => '仅供演示 — 无需发送代币即可走完等待 → 发现 → 确认。',
         'copy_address' => '复制地址', 'copy_amount' => '复制金额', 'expires' => '账单剩余时间', 'network' => '网络',
         'amount' => '金额', 'address' => '地址', 'txid' => '交易', 'delivered' => '文件已就绪', 'key' => '许可证密钥',
-        'link' => '下载', 'back_store' => '返回商店', 'orders' => '我的订单',
+        'link' => '下载', 'back_store' => '返回商店', 'orders' => '我的订单', 'open_order' => '打开订单页',
+    ],
+    'guest_order' => [
+        'meta_title' => '订单 — Nexus',
+        'title' => '你的订单',
+    ],
+    'downloads' => [
+        'meta_title' => '下载 — Nexus',
+        'title' => '演示下载',
+        'body' => '此演示文件在订单付款后可用。',
+        'file' => '下载文件',
     ],
     'account' => [
         'meta_title' => '我的订单 — Nexus', 'meta_description' => '订单历史与付款状态。',
@@ -96,7 +107,8 @@ return [
     'auth' => [
         'login' => '登录', 'register' => '创建账户', 'remember' => '记住我', 'forgot' => '忘记密码？',
         'no_account' => '需要账户？', 'has_account' => '已经注册？', 'confirm_password' => '确认密码',
-        'reset' => '重置密码', 'email_link' => '发送重置链接', 'demo_hint' => '演示账户在首页。',
+        'reset' => '重置密码', 'email_link' => '发送重置链接',
+        'demo_hint' => '一键填入演示账户。所有密码：demo123456。', 'fill' => '填入',
     ],
     'admin' => [
         'meta_description' => 'Nexus 运营终端', 'dashboard_title' => '终端', 'orders_title' => '订单',
@@ -124,6 +136,7 @@ return [
         'created_hint' => '如果账单过期，可以重新结账。数字商品在付款后自动送达。',
         'paid_subject' => 'Nexus 订单 :number 已付款 — 你的文件', 'paid_title' => '付款已确认',
         'paid_body' => '你好 :name，订单 :number 的付款已确认。密钥和链接如下。',
+        'open_order' => '打开订单页',
     ],
     'categories' => [
         'templates' => '模板', 'licenses' => '许可证', 'courses' => '课程', 'gift-cards' => '礼品卡',

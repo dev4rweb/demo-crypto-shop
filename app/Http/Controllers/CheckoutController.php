@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use App\Models\PromoCode;
 use App\Services\CheckoutService;
 use App\Services\PaymentMonitorService;
 use Illuminate\Http\JsonResponse;
@@ -72,7 +71,7 @@ class CheckoutController extends Controller
             $data['promo'] ?? null,
         );
 
-        return redirect()->to(locale_route('checkout.pay', ['payment' => $payment->id]));
+        return redirect()->to(locale_route('checkout.pay', ['payment' => $payment]));
     }
 
     public function pay(Payment $payment): Response
@@ -114,7 +113,7 @@ class CheckoutController extends Controller
         $order = $payment->order;
 
         return [
-            'id' => $payment->id,
+            'uuid' => $payment->uuid,
             'status' => $payment->status,
             'coin' => $payment->coin,
             'network' => $payment->network,
@@ -130,6 +129,7 @@ class CheckoutController extends Controller
             'seconds_left' => max(0, ($payment->expires_at?->getTimestamp() ?? time()) - time()),
             'txid' => $payment->txid,
             'driver' => $payment->driver,
+            'order_url' => $order ? signed_order_url($order) : null,
             'order' => [
                 'uuid' => $order?->uuid,
                 'status' => $order?->status,
@@ -141,7 +141,7 @@ class CheckoutController extends Controller
                     'name' => $item->name,
                     'quantity' => $item->quantity,
                     'unit_price_usd_cents' => $item->unit_price_usd_cents,
-                    'delivery_payload' => $order->isPaid() ? $item->delivery_payload : null,
+                    'delivery_payload' => $order->isPaid() ? map_delivery_payload($item->delivery_payload) : null,
                 ]),
             ],
         ];

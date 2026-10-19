@@ -3,16 +3,14 @@
 namespace App\Mail;
 
 use App\Models\Order;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PaymentConfirmedMail extends Mailable implements ShouldQueue
+class PaymentConfirmedMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use SerializesModels;
 
     public function __construct(public Order $order) {}
 
@@ -25,9 +23,14 @@ class PaymentConfirmedMail extends Mailable implements ShouldQueue
 
     public function content(): Content
     {
+        $order = $this->order->loadMissing('items');
+
         return new Content(
             view: 'emails.payment-confirmed',
-            with: ['order' => $this->order],
+            with: [
+                'order' => $order,
+                'orderUrl' => signed_order_url($order),
+            ],
         );
     }
 }

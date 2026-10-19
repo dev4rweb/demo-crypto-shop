@@ -119,6 +119,7 @@ return [
         'pay' => 'Create invoice',
         'empty' => 'Your cart is empty.',
         'quote_error' => 'Could not calculate the total.',
+        'guest_note' => 'Guest orders need no account. Or log in as buyer@example.com / demo123456.',
     ],
     'pay' => [
         'meta_title' => 'Pay with crypto — Nexus',
@@ -145,6 +146,17 @@ return [
         'link' => 'Download',
         'back_store' => 'Back to store',
         'orders' => 'My orders',
+        'open_order' => 'Open order page',
+    ],
+    'guest_order' => [
+        'meta_title' => 'Order — Nexus',
+        'title' => 'Your order',
+    ],
+    'downloads' => [
+        'meta_title' => 'Download — Nexus',
+        'title' => 'Demo download',
+        'body' => 'This demonstration file is available because you paid for this item.',
+        'file' => 'Download file',
     ],
     'account' => [
         'meta_title' => 'My orders — Nexus',
@@ -196,7 +208,8 @@ return [
         'confirm_password' => 'Confirm password',
         'reset' => 'Reset password',
         'email_link' => 'Email password reset link',
-        'demo_hint' => 'Demo accounts are on the home page.',
+        'demo_hint' => 'One-click demo logins. Password for all accounts: demo123456.',
+        'fill' => 'Fill',
     ],
     'admin' => [
         'meta_description' => 'Nexus operator terminal',
@@ -250,6 +263,7 @@ return [
         'paid_subject' => 'Nexus order :number is paid — your files',
         'paid_title' => 'Payment confirmed',
         'paid_body' => 'Hi :name, payment for order :number is confirmed. Your keys and links are below.',
+        'open_order' => 'Open your order page',
     ],
     'categories' => [
         'templates' => 'Templates',
