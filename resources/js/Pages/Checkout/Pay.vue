@@ -11,7 +11,9 @@ const page = usePage();
 const { t, locRoute } = useI18n();
 const current = ref(props.payment);
 const user = computed(() => page.props.auth?.user);
+const busy = ref(false);
 let timer;
+let pollMs = 2000;
 
 const statusLabel = computed(() => t(`pay.${current.value.status}`) || current.value.status);
 const paid = computed(() => ['confirmed', 'overpaid'].includes(current.value.status));
@@ -22,6 +24,48 @@ const mmss = computed(() => {
     return `${String(m).padStart(2, '0')}:${String(r).padStart(2, '0')}`;
 });
 
+const paymentKey = () => {
+    if (current.value?.uuid) {
+        return current.value.uuid;
+    }
+
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const payAt = parts.lastIndexOf('pay');
+
+    return payAt >= 0 ? parts[payAt + 1] : parts.at(-1);
+};
+
+const payActionUrl = (action) => {
+    const key = paymentKey();
+    const name = action === 'simulate' ? 'checkout.simulate' : 'checkout.status';
+
+    if (key) {
+        try {
+            return locRoute(name, { payment: key }, false);
+        } catch {
+            // Same-origin fallback when Ziggy rejects the UUID or locale.
+        }
+    }
+
+    return `${window.location.pathname.replace(/\/$/, '')}/${action}`;
+};
+
+const csrfHeaders = () => {
+    const token = document.querySelector('meta[name="csrf-token"]')?.content
+        || page.props.csrf_token
+        || '';
+    const headers = {
+        Accept: 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+    };
+
+    if (token) {
+        headers['X-CSRF-TOKEN'] = token;
+    }
+
+    return { headers, token };
+};
+
 const copy = async (value) => {
     try {
         await navigator.clipboard.writeText(value);
@@ -31,38 +75,63 @@ const copy = async (value) => {
 };
 
 const refresh = async () => {
-    const res = await fetch(locRoute('checkout.status', { payment: current.value.uuid }), {
-        headers: { Accept: 'application/json' },
-    });
-    if (res.ok) {
-        current.value = await res.json();
+    try {
+        const res = await fetch(payActionUrl('status'), {
+            headers: { Accept: 'application/json' },
+            credentials: 'same-origin',
+        });
+        if (res.ok) {
+            current.value = await res.json();
+        }
+    } catch {
+        // keep the last known invoice
     }
 };
 
-const simulate = async () => {
-    const token = document.querySelector('meta[name=csrf-token]')?.content;
-    const res = await fetch(locRoute('checkout.simulate', { payment: current.value.uuid }), {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'X-CSRF-TOKEN': token,
-            'X-Requested-With': 'XMLHttpRequest',
-        },
-    });
-    if (res.ok) {
-        current.value = await res.json();
-    }
-};
-
-onMounted(() => {
+const restartTimer = () => {
+    clearInterval(timer);
     timer = setInterval(() => {
         if (['waiting', 'detected', 'confirming', 'underpaid'].includes(current.value.status)) {
             refresh();
             if (current.value.seconds_left > 0) {
-                current.value.seconds_left -= 2;
+                current.value.seconds_left -= pollMs / 1000;
             }
         }
-    }, 2000);
+    }, pollMs);
+};
+
+const simulate = async () => {
+    if (busy.value || paid.value || current.value.status === 'expired') {
+        return;
+    }
+
+    busy.value = true;
+
+    try {
+        const { headers, token } = csrfHeaders();
+        const res = await fetch(payActionUrl('simulate'), {
+            method: 'POST',
+            headers: {
+                ...headers,
+                'Content-Type': 'application/json',
+            },
+            credentials: 'same-origin',
+            body: JSON.stringify(token ? { _token: token } : {}),
+        });
+        if (res.ok) {
+            current.value = await res.json();
+            pollMs = 1000;
+            restartTimer();
+        }
+    } catch {
+        // next status poll still advances a started simulation
+    } finally {
+        busy.value = false;
+    }
+};
+
+onMounted(() => {
+    restartTimer();
 });
 
 onUnmounted(() => clearInterval(timer));
@@ -106,6 +175,7 @@ onUnmounted(() => clearInterval(timer));
                 v-if="!paid && current.status !== 'expired'"
                 class="neon-btn mt-8"
                 type="button"
+                :disabled="busy"
                 @click="simulate"
             >
                 {{ t('pay.simulate') }}

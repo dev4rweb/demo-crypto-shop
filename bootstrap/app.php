@@ -31,6 +31,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'webhooks/nowpayments',
             'webhooks/cryptomus',
             'webhooks/testnet',
+            'pay/*/simulate',
+            '*/pay/*/simulate',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

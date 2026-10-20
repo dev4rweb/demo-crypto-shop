@@ -60,6 +60,7 @@ class HandleInertiaRequests extends Middleware
                 'success' => $request->session()->get('success'),
                 'error' => $request->session()->get('error'),
             ],
+            'csrf_token' => $request->hasSession() ? $request->session()->token() : csrf_token(),
             'locale' => $locale,
             'routeLocale' => $request->route('locale'),
             'dir' => in_array($locale, $rtl, true) ? 'rtl' : 'ltr',

@@ -19,6 +19,61 @@ test('payment confirmed mail is sent after simulated payment', function () {
     });
 });
 
+test('guest can simulate payment by uuid and receive the paid email', function () {
+    Mail::fake();
+
+    $product = seedCatalog();
+
+    $this->assertGuest();
+
+    $this->post('/checkout', [
+        'name' => 'Jordan Hale',
+        'email' => 'guest-sim@example.com',
+        'delivery_type' => 'digital',
+        'coin' => 'ETH',
+        'items' => [
+            ['product_id' => $product->id, 'quantity' => 1],
+        ],
+    ])->assertRedirect();
+
+    $this->assertGuest();
+
+    $payment = \App\Models\Payment::query()->latest('id')->first();
+    expect($payment)->not->toBeNull()
+        ->and($payment->uuid)->not->toBeEmpty()
+        ->and($payment->order->user_id)->toBeNull()
+        ->and($payment->order->email)->toBe('guest-sim@example.com');
+
+    $this->get('/pay/'.$payment->id)->assertNotFound();
+    $this->get('/pay/'.$payment->uuid)
+        ->assertOk()
+        ->assertSee('Simulate payment', false);
+
+    $this->postJson('/pay/'.$payment->id.'/simulate')->assertNotFound();
+    $this->post('/pay/'.$payment->uuid.'/simulate', [], [
+        'Accept' => 'application/json',
+        'X-Requested-With' => 'XMLHttpRequest',
+    ])->assertOk()
+        ->assertJsonPath('uuid', $payment->uuid)
+        ->assertJsonPath('status', 'detected');
+
+    $this->travel(10)->seconds();
+
+    $this->getJson('/pay/'.$payment->uuid.'/status')
+        ->assertOk()
+        ->assertJsonPath('status', 'confirmed')
+        ->assertJsonPath('order.status', 'paid');
+
+    $this->assertGuest();
+
+    expect($payment->fresh('order.items')->order->items->first()->delivery_payload['key'] ?? null)->not->toBeNull();
+
+    Mail::assertSent(PaymentConfirmedMail::class, function (PaymentConfirmedMail $mail) use ($payment) {
+        return $mail->order->uuid === $payment->order->uuid
+            && $mail->hasTo('guest-sim@example.com');
+    });
+});
+
 test('signed order page shows status and digital goods', function () {
     Mail::fake();
 
