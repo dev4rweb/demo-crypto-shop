@@ -6,7 +6,11 @@ test('sitemap lists locales catalog and about', function () {
     $xml = $this->get('/sitemap.xml')->assertOk()->assertHeader('Content-Type', 'application/xml; charset=UTF-8')->getContent();
 
     expect($xml)->toContain(url('/about'))
+        ->toContain(url('/privacy'))
+        ->toContain(url('/terms'))
         ->toContain('/zh/about')
+        ->toContain('/zh/privacy')
+        ->toContain('/ru/terms')
         ->toContain('/catalog/neon-storefront-kit')
         ->toContain('/ru/about');
 });

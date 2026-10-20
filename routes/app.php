@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\AccountOrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\DownloadController;
@@ -20,6 +21,8 @@ Route::get('/', [CatalogController::class, 'index'])->name('welcome');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/privacy', [LegalController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [LegalController::class, 'terms'])->name('terms');
 
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
 Route::post('/checkout/quote', [CheckoutController::class, 'quote'])->name('checkout.quote');

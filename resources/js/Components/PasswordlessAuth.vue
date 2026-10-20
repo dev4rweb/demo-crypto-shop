@@ -1,5 +1,5 @@
 <script setup>
-import { router, useForm, usePage } from '@inertiajs/vue3';
+import { Link, router, useForm, usePage } from '@inertiajs/vue3';
 import { computed, onMounted } from 'vue';
 import { useI18n } from '@/composables/useI18n';
 
@@ -8,7 +8,7 @@ defineProps({
 });
 
 const page = usePage();
-const { t } = useI18n();
+const { t, locRoute } = useI18n();
 const googleEnabled = computed(() => Boolean(page.props.googleEnabled));
 const googleClientId = computed(() => page.props.googleClientId || '');
 const flashSuccess = computed(() => page.props.flash?.success);
@@ -87,6 +87,12 @@ onMounted(() => {
         >
             {{ t('auth.google_continue') }}
         </a>
+        <p class="text-center text-[11px] leading-relaxed text-muted">
+            {{ t('auth.legal_near_google') }}
+            <Link :href="locRoute('privacy')" class="text-cyan">{{ t('nav.privacy') }}</Link>
+            ·
+            <Link :href="locRoute('terms')" class="text-cyan">{{ t('nav.terms') }}</Link>
+        </p>
         <form class="space-y-3" @submit.prevent="sendMagic">
             <input
                 v-model="magic.email"

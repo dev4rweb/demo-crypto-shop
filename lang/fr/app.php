@@ -10,7 +10,7 @@ return [
     'nav' => [
         'home' => 'Boutique', 'catalog' => 'Catalogue', 'about' => 'À propos', 'login' => 'Connexion', 'register' => 'Créer un compte',
         'logout' => 'Déconnexion', 'account' => 'Mes commandes', 'admin' => 'Terminal', 'cart' => 'Panier', 'menu' => 'Menu',
-        'close_menu' => 'Fermer le menu', 'profile' => 'Profil',
+        'close_menu' => 'Fermer le menu', 'profile' => 'Profil', 'privacy' => 'Confidentialité', 'terms' => 'Conditions',
     ],
     'theme' => [
         'toggle' => 'Changer de thème', 'to_light' => 'Passer au thème clair', 'to_dark' => 'Passer au thème sombre', 'language' => 'Langue',
@@ -128,6 +128,41 @@ return [
         'magic_mail_body' => 'Touchez le bouton pour ouvrir votre compte. Le lien ne sert qu’une fois et expire dans 15 minutes.',
         'magic_mail_button' => 'Ouvrir mon compte',
         'magic_mail_hint' => 'Si vous n’avez pas demandé cet e-mail, ignorez-le.',
+        'legal_near_google' => 'En continuant, vous pouvez lire notre',
+    ],
+    'legal' => [
+        'privacy' => [
+            'meta_title' => 'Politique de confidentialité — Nexus',
+            'meta_description' => 'Ce que cette démo conserve et comment demander la suppression.',
+            'kicker' => 'Mentions',
+            'title' => 'Politique de confidentialité',
+            'updated' => 'Mise à jour : octobre 2026',
+            'lead' => 'Nexus est une démo de portfolio publique, pas une vraie boutique. Cette page dit ce que nous stockons quand vous l’essayez.',
+            'sections' => [
+                ['title' => 'Ce que nous collectons', 'body' => "Le nom et l’e-mail saisis au paiement ou pour un lien de connexion.\nSi vous continuez avec Google : l’e-mail et le nom de votre compte Google.\nDétails de commande : articles, montants, statut de paiement et liens de téléchargement démo."],
+                ['title' => 'Comment nous l’utilisons', 'body' => 'Uniquement pour faire tourner cette démo : créer une facture, montrer la commande, envoyer des e-mails démo et vous reconnecter. Nous ne vendons ni ne partageons vos données avec des annonceurs ou d’autres sociétés.'],
+                ['title' => 'Paiements et biens', 'body' => 'Les paiements ici sont en réseau de test ou simulés. Aucun vrai argent n’est pris. Aucun vrai produit ou licence n’est livré.'],
+                ['title' => 'Durée de conservation', 'body' => 'Les données démo peuvent être effacées quand la boutique est reconstruite. Pas de marketing.'],
+                ['title' => 'Demander la suppression', 'body' => 'Écrivez-nous pour supprimer votre compte et vos commandes. Nous les retirerons de cette démo.'],
+            ],
+            'contact' => 'Questions ou demande de suppression :',
+        ],
+        'terms' => [
+            'meta_title' => 'Conditions d’utilisation — Nexus',
+            'meta_description' => 'Conditions de cette démo. Pas de ventes réelles, paiements de test seulement.',
+            'kicker' => 'Mentions',
+            'title' => 'Conditions d’utilisation',
+            'updated' => 'Mise à jour : octobre 2026',
+            'lead' => 'Ces conditions concernent une démo de portfolio. Ce n’est pas un contrat de vraie boutique.',
+            'sections' => [
+                ['title' => 'De quoi il s’agit', 'body' => 'Nexus montre des biens numériques d’exemple et un paiement crypto. C’est une démonstration, pas une vitrine en production.'],
+                ['title' => 'Pas de vraies ventes', 'body' => 'Rien n’est à vendre. Les paiements sont en réseau de test ou simulés. Vous ne recevrez ni vrais produits, ni licences, ni remboursement.'],
+                ['title' => 'Comptes', 'body' => 'Vous pouvez vous connecter avec un mot de passe, Google ou un lien e-mail unique. Les comptes équipe démo restent sur mot de passe.'],
+                ['title' => 'Votre usage', 'body' => 'Essayez les parcours. N’abusez pas de la démo ni des autres visiteurs. Nous pouvons réinitialiser ou couper la démo à tout moment.'],
+                ['title' => 'Confidentialité', 'body' => 'Ce que nous stockons et comment demander la suppression est expliqué sur la page Confidentialité.'],
+            ],
+            'contact' => 'Questions :',
+        ],
     ],
     'admin' => [
         'meta_description' => 'Terminal opérateur Nexus', 'dashboard_title' => 'Terminal', 'orders_title' => 'Commandes',

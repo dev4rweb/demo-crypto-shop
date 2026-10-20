@@ -20,6 +20,8 @@ return [
         'menu' => 'Menu',
         'close_menu' => 'Close menu',
         'profile' => 'Profile',
+        'privacy' => 'Privacy',
+        'terms' => 'Terms',
     ],
     'theme' => [
         'toggle' => 'Toggle theme',
@@ -227,6 +229,71 @@ return [
         'magic_mail_body' => 'Tap the button to open your account. The link works once and expires in 15 minutes.',
         'magic_mail_button' => 'Open my account',
         'magic_mail_hint' => 'If you did not ask for this, you can ignore the email.',
+        'legal_near_google' => 'By continuing you can read our',
+    ],
+    'legal' => [
+        'privacy' => [
+            'meta_title' => 'Privacy Policy — Nexus',
+            'meta_description' => 'What this demo shop stores, how it is used, and how to ask for deletion.',
+            'kicker' => 'Legal',
+            'title' => 'Privacy Policy',
+            'updated' => 'Last updated: October 2026',
+            'lead' => 'Nexus is a public portfolio demo, not a real shop. This page says what we store when you try it.',
+            'sections' => [
+                [
+                    'title' => 'What we collect',
+                    'body' => "Name and email you type at checkout or when you ask for a login link.\nIf you continue with Google, we receive your Google account email and name.\nOrder details: items, amounts, payment status, and demo download links.",
+                ],
+                [
+                    'title' => 'How we use it',
+                    'body' => 'Only to run this demo: create an invoice, show your order, send demo emails, and let you sign back in. We do not sell or share your data with advertisers or other companies.',
+                ],
+                [
+                    'title' => 'Payments and goods',
+                    'body' => 'Payments here are testnet or simulated. No real money is taken. No real products or licenses are delivered.',
+                ],
+                [
+                    'title' => 'How long we keep it',
+                    'body' => 'Demo data may be wiped when the shop is rebuilt. It is not kept for marketing.',
+                ],
+                [
+                    'title' => 'How to request deletion',
+                    'body' => 'Email us and ask us to delete your account and orders. We will remove them from this demo.',
+                ],
+            ],
+            'contact' => 'Questions or deletion requests:',
+        ],
+        'terms' => [
+            'meta_title' => 'Terms of Service — Nexus',
+            'meta_description' => 'Terms for this portfolio demo shop. No real sales, test payments only.',
+            'kicker' => 'Legal',
+            'title' => 'Terms of Service',
+            'updated' => 'Last updated: October 2026',
+            'lead' => 'These terms cover a public portfolio demo. They are not a contract for a real store.',
+            'sections' => [
+                [
+                    'title' => 'What this is',
+                    'body' => 'Nexus lets you browse sample digital goods and walk through a crypto checkout. It is a demonstration, not a live storefront.',
+                ],
+                [
+                    'title' => 'No real sales',
+                    'body' => 'Nothing here is for sale. Payments are testnet or simulated. You will not receive real products, licenses, or money back.',
+                ],
+                [
+                    'title' => 'Accounts',
+                    'body' => 'You may sign in with a password, Google, or a one-time email link. Staff demo accounts still use a password.',
+                ],
+                [
+                    'title' => 'Your use',
+                    'body' => 'Try the flows. Do not abuse the demo or other visitors. We may reset or take the demo offline at any time.',
+                ],
+                [
+                    'title' => 'Privacy',
+                    'body' => 'What we store and how to ask for deletion is explained on the Privacy Policy page.',
+                ],
+            ],
+            'contact' => 'Questions:',
+        ],
     ],
     'admin' => [
         'meta_description' => 'Nexus operator terminal',

@@ -10,7 +10,7 @@ return [
     'nav' => [
         'home' => 'Tienda', 'catalog' => 'Catálogo', 'about' => 'Acerca de', 'login' => 'Entrar', 'register' => 'Crear cuenta',
         'logout' => 'Salir', 'account' => 'Mis pedidos', 'admin' => 'Terminal', 'cart' => 'Carrito', 'menu' => 'Menú',
-        'close_menu' => 'Cerrar menú', 'profile' => 'Perfil',
+        'close_menu' => 'Cerrar menú', 'profile' => 'Perfil', 'privacy' => 'Privacidad', 'terms' => 'Términos',
     ],
     'theme' => [
         'toggle' => 'Cambiar tema', 'to_light' => 'Pasar a tema claro', 'to_dark' => 'Pasar a tema oscuro', 'language' => 'Idioma',
@@ -128,6 +128,41 @@ return [
         'magic_mail_body' => 'Pulsa el botón para abrir tu cuenta. El enlace sirve una vez y caduca en 15 minutos.',
         'magic_mail_button' => 'Abrir mi cuenta',
         'magic_mail_hint' => 'Si no pediste este correo, puedes ignorarlo.',
+        'legal_near_google' => 'Al continuar puedes leer nuestra',
+    ],
+    'legal' => [
+        'privacy' => [
+            'meta_title' => 'Política de privacidad — Nexus',
+            'meta_description' => 'Qué guarda esta demo y cómo pedir el borrado.',
+            'kicker' => 'Legal',
+            'title' => 'Política de privacidad',
+            'updated' => 'Actualizado: octubre de 2026',
+            'lead' => 'Nexus es una demo pública de portafolio, no una tienda real. Esta página dice qué guardamos cuando la pruebas.',
+            'sections' => [
+                ['title' => 'Qué recogemos', 'body' => "Nombre y correo que escribes en el pago o al pedir un enlace de acceso.\nSi continúas con Google: el correo y el nombre de tu cuenta de Google.\nDatos del pedido: artículos, importes, estado de pago y enlaces de descarga de demo."],
+                ['title' => 'Cómo lo usamos', 'body' => 'Solo para hacer funcionar esta demo: crear una factura, mostrar el pedido, enviar correos de demo y dejarte entrar de nuevo. No vendemos ni compartimos tus datos con anunciantes u otras empresas.'],
+                ['title' => 'Pagos y bienes', 'body' => 'Los pagos aquí son de red de prueba o simulados. No se cobra dinero real. No se entregan productos ni licencias reales.'],
+                ['title' => 'Cuánto tiempo lo guardamos', 'body' => 'Los datos de demo pueden borrarse al reconstruir la tienda. No se usan para marketing.'],
+                ['title' => 'Cómo pedir el borrado', 'body' => 'Escríbenos y pide borrar tu cuenta y tus pedidos. Los quitaremos de esta demo.'],
+            ],
+            'contact' => 'Preguntas o petición de borrado:',
+        ],
+        'terms' => [
+            'meta_title' => 'Términos del servicio — Nexus',
+            'meta_description' => 'Términos de esta demo. Sin ventas reales, solo pagos de prueba.',
+            'kicker' => 'Legal',
+            'title' => 'Términos del servicio',
+            'updated' => 'Actualizado: octubre de 2026',
+            'lead' => 'Estos términos cubren una demo pública de portafolio. No son un contrato de tienda real.',
+            'sections' => [
+                ['title' => 'Qué es esto', 'body' => 'Nexus te deja ver bienes digitales de ejemplo y un pago con cripto. Es una demostración, no un escaparate en producción.'],
+                ['title' => 'Sin ventas reales', 'body' => 'Aquí no se vende nada. Los pagos son de red de prueba o simulados. No recibirás productos reales, licencias ni reembolsos.'],
+                ['title' => 'Cuentas', 'body' => 'Puedes entrar con contraseña, Google o un enlace único al correo. Las cuentas de personal de demo siguen usando contraseña.'],
+                ['title' => 'Tu uso', 'body' => 'Prueba los flujos. No abuses de la demo ni de otros visitantes. Podemos resetear o apagar la demo en cualquier momento.'],
+                ['title' => 'Privacidad', 'body' => 'Qué guardamos y cómo pedir el borrado está en la página de Privacidad.'],
+            ],
+            'contact' => 'Preguntas:',
+        ],
     ],
     'admin' => [
         'meta_description' => 'Terminal de operador Nexus', 'dashboard_title' => 'Terminal', 'orders_title' => 'Pedidos',

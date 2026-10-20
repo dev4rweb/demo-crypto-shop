@@ -11,7 +11,7 @@ class SitemapController extends Controller
     {
         $locales = config('localization.supported', ['en']);
         $default = (string) config('localization.default', 'en');
-        $paths = ['/', '/about', '/catalog', '/login'];
+        $paths = ['/', '/about', '/catalog', '/login', '/privacy', '/terms'];
         $slugs = Product::query()->where('is_active', true)->pluck('slug');
 
         $urls = [];

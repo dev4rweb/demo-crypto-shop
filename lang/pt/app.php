@@ -10,7 +10,7 @@ return [
     'nav' => [
         'home' => 'Loja', 'catalog' => 'Catálogo', 'about' => 'Sobre', 'login' => 'Entrar', 'register' => 'Criar conta',
         'logout' => 'Sair', 'account' => 'As minhas encomendas', 'admin' => 'Terminal', 'cart' => 'Carrinho', 'menu' => 'Menu',
-        'close_menu' => 'Fechar menu', 'profile' => 'Perfil',
+        'close_menu' => 'Fechar menu', 'profile' => 'Perfil', 'privacy' => 'Privacidade', 'terms' => 'Termos',
     ],
     'theme' => [
         'toggle' => 'Alternar tema', 'to_light' => 'Mudar para tema claro', 'to_dark' => 'Mudar para tema escuro', 'language' => 'Idioma',
@@ -128,6 +128,41 @@ return [
         'magic_mail_body' => 'Toque no botão para abrir a conta. A ligação serve uma vez e expira em 15 minutos.',
         'magic_mail_button' => 'Abrir a minha conta',
         'magic_mail_hint' => 'Se não pediu este e-mail, pode ignorá-lo.',
+        'legal_near_google' => 'Ao continuar pode ler a nossa',
+    ],
+    'legal' => [
+        'privacy' => [
+            'meta_title' => 'Política de privacidade — Nexus',
+            'meta_description' => 'O que esta demo guarda e como pedir a eliminação.',
+            'kicker' => 'Legal',
+            'title' => 'Política de privacidade',
+            'updated' => 'Atualizado: outubro de 2026',
+            'lead' => 'A Nexus é uma demo pública de portefólio, não uma loja real. Esta página diz o que guardamos quando a experimenta.',
+            'sections' => [
+                ['title' => 'O que recolhemos', 'body' => "Nome e e-mail que escreve no checkout ou ao pedir uma ligação de entrada.\nSe continuar com o Google: o e-mail e o nome da conta Google.\nDados da encomenda: artigos, montantes, estado de pagamento e ligações de descarga da demo."],
+                ['title' => 'Como usamos', 'body' => 'Só para correr esta demo: criar uma fatura, mostrar a encomenda, enviar e-mails de demo e deixá-lo entrar de novo. Não vendemos nem partilhamos os seus dados com anunciantes ou outras empresas.'],
+                ['title' => 'Pagamentos e bens', 'body' => 'Os pagamentos aqui são de rede de teste ou simulados. Não se cobra dinheiro real. Não se entregam produtos ou licenças reais.'],
+                ['title' => 'Durante quanto tempo', 'body' => 'Os dados da demo podem ser apagados quando a loja é reconstruída. Não servem para marketing.'],
+                ['title' => 'Como pedir a eliminação', 'body' => 'Escreva-nos e peça para apagar a conta e as encomendas. Removê-las-emos desta demo.'],
+            ],
+            'contact' => 'Perguntas ou pedido de eliminação:',
+        ],
+        'terms' => [
+            'meta_title' => 'Termos de serviço — Nexus',
+            'meta_description' => 'Termos desta demo. Sem vendas reais, só pagamentos de teste.',
+            'kicker' => 'Legal',
+            'title' => 'Termos de serviço',
+            'updated' => 'Atualizado: outubro de 2026',
+            'lead' => 'Estes termos cobrem uma demo pública de portefólio. Não são um contrato de loja real.',
+            'sections' => [
+                ['title' => 'O que é isto', 'body' => 'A Nexus deixa-o ver bens digitais de exemplo e um checkout em cripto. É uma demonstração, não uma montra em produção.'],
+                ['title' => 'Sem vendas reais', 'body' => 'Aqui não se vende nada. Os pagamentos são de rede de teste ou simulados. Não receberá produtos reais, licenças nem reembolsos.'],
+                ['title' => 'Contas', 'body' => 'Pode entrar com palavra-passe, Google ou uma ligação única por e-mail. As contas de equipa da demo continuam com palavra-passe.'],
+                ['title' => 'O seu uso', 'body' => 'Experimente os fluxos. Não abuse da demo nem de outros visitantes. Podemos repor ou desligar a demo a qualquer momento.'],
+                ['title' => 'Privacidade', 'body' => 'O que guardamos e como pedir a eliminação está na página de Privacidade.'],
+            ],
+            'contact' => 'Perguntas:',
+        ],
     ],
     'admin' => [
         'meta_description' => 'Terminal do operador Nexus', 'dashboard_title' => 'Terminal', 'orders_title' => 'Encomendas',
