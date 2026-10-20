@@ -1,6 +1,7 @@
 <script setup>
 import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { computed, ref } from 'vue';
+import PasswordlessAuth from '@/Components/PasswordlessAuth.vue';
 import SeoHead from '@/Components/SeoHead.vue';
 import ShopLayout from '@/Layouts/ShopLayout.vue';
 import { useCart } from '@/stores/cart';
@@ -60,6 +61,13 @@ const submit = () => {
         <SeoHead />
         <section class="mx-auto max-w-3xl px-4 py-10">
             <h1 class="font-display text-4xl">{{ t('checkout.title') }}</h1>
+            <p class="mt-3 text-sm text-muted">{{ t('checkout.guest_note') }}</p>
+            <div v-if="!user" class="glass mt-6 p-5">
+                <h2 class="font-mono text-xs uppercase tracking-widest text-cyan">{{ t('checkout.sign_in_faster') }}</h2>
+                <div class="mt-3">
+                    <PasswordlessAuth compact />
+                </div>
+            </div>
             <p v-if="!cart.items.length" class="mt-6 text-muted">
                 {{ t('checkout.empty') }}
                 <Link :href="locRoute('welcome')" class="text-lime">{{ t('nav.catalog') }}</Link>

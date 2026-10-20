@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Auth\MagicLinkController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TelegramWebhookController;
 use App\Http\Controllers\WebhookController;
@@ -17,6 +19,18 @@ Route::post('/telegram/webhook', [TelegramWebhookController::class, 'handle'])->
 Route::post('/webhooks/nowpayments', [WebhookController::class, 'nowpayments'])->name('webhooks.nowpayments');
 Route::post('/webhooks/cryptomus', [WebhookController::class, 'cryptomus'])->name('webhooks.cryptomus');
 Route::post('/webhooks/testnet', [WebhookController::class, 'testnet'])->name('webhooks.testnet');
+
+Route::middleware('guest')->group(function (): void {
+    Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
+    Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
+    Route::post('/auth/google/one-tap', [GoogleAuthController::class, 'oneTap'])->name('auth.google.one-tap');
+    Route::post('/auth/magic', [MagicLinkController::class, 'send'])
+        ->middleware('throttle:5,15')
+        ->name('auth.magic.send');
+    Route::get('/auth/magic/{token}', [MagicLinkController::class, 'consume'])
+        ->middleware('signed')
+        ->name('auth.magic.consume');
+});
 
 require __DIR__.'/app.php';
 

@@ -66,6 +66,8 @@ class HandleInertiaRequests extends Middleware
             'translations' => trans('app'),
             'locales' => $selectorLocales,
             'telegramEnabled' => telegram_connect_ready(),
+            'googleEnabled' => google_oauth_ready(),
+            'googleClientId' => google_client_id(),
             'paymentDriver' => ShopSetting::get('payment_driver', (string) config('payments.driver')),
             'coins' => ShopSetting::coins(),
             'rates' => $rates,

@@ -33,9 +33,14 @@ test('guest can place a digital order and get a waiting invoice', function () {
     $order = Order::query()->first();
     expect($order->email)->toBe('buyer@example.com')
         ->and($order->status)->toBe('awaiting_payment')
-        ->and($order->items)->toHaveCount(1);
+        ->and($order->items)->toHaveCount(1)
+        ->and($payment->uuid)->not->toBeEmpty();
 
-    $this->get('/pay/'.$payment->id)->assertOk();
+    $this->get('/pay/'.$payment->id)->assertNotFound();
+    $this->get('/pay/'.$payment->uuid)->assertOk();
+    $this->getJson('/pay/'.$payment->id.'/status')->assertNotFound();
+    $this->getJson('/pay/'.$payment->uuid.'/status')->assertOk()
+        ->assertJsonPath('uuid', $payment->uuid);
 });
 
 test('checkout rejects empty cart', function () {

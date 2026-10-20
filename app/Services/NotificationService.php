@@ -6,7 +6,9 @@ use App\Mail\OrderCreatedMail;
 use App\Mail\PaymentConfirmedMail;
 use App\Models\Order;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class NotificationService
 {
@@ -16,12 +18,28 @@ class NotificationService
 
     public function orderCreated(Order $order): void
     {
-        Mail::to($order->email)->send(new OrderCreatedMail($order));
+        try {
+            Mail::to($order->email)->send(new OrderCreatedMail($order));
+        } catch (Throwable $e) {
+            Log::error('Failed to send OrderCreatedMail', [
+                'order_uuid' => $order->uuid,
+                'email' => $order->email,
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 
     public function paymentConfirmed(Order $order): void
     {
-        Mail::to($order->email)->send(new PaymentConfirmedMail($order));
+        try {
+            Mail::to($order->email)->send(new PaymentConfirmedMail($order));
+        } catch (Throwable $e) {
+            Log::error('Failed to send PaymentConfirmedMail', [
+                'order_uuid' => $order->uuid,
+                'email' => $order->email,
+                'message' => $e->getMessage(),
+            ]);
+        }
 
         $this->broadcastStaff(
             __('app.telegram.paid', [

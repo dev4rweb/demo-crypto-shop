@@ -54,7 +54,11 @@ const user = computed(() => page.props.auth?.user);
         </main>
         <CartDrawer />
         <footer class="mt-16 border-t border-line px-4 py-8 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-            Nexus · demo-crypto-shop.dev4rweb.com
+            <p>Nexus · demo-crypto-shop.dev4rweb.com</p>
+            <p class="mt-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                <Link :href="locRoute('privacy')" class="text-cyan">{{ t('nav.privacy') }}</Link>
+                <Link :href="locRoute('terms')" class="text-cyan">{{ t('nav.terms') }}</Link>
+            </p>
         </footer>
     </div>
 </template>

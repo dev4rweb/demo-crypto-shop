@@ -20,6 +20,8 @@ return [
         'menu' => 'Menu',
         'close_menu' => 'Close menu',
         'profile' => 'Profile',
+        'privacy' => 'Privacy',
+        'terms' => 'Terms',
     ],
     'theme' => [
         'toggle' => 'Toggle theme',
@@ -119,6 +121,8 @@ return [
         'pay' => 'Create invoice',
         'empty' => 'Your cart is empty.',
         'quote_error' => 'Could not calculate the total.',
+        'guest_note' => 'Guest orders need no account. Sign in with Google or a one-time email link — no password. Or use buyer@example.com / demo123456.',
+        'sign_in_faster' => 'Save this order to an account',
     ],
     'pay' => [
         'meta_title' => 'Pay with crypto — Nexus',
@@ -145,6 +149,17 @@ return [
         'link' => 'Download',
         'back_store' => 'Back to store',
         'orders' => 'My orders',
+        'open_order' => 'Open order page',
+    ],
+    'guest_order' => [
+        'meta_title' => 'Order — Nexus',
+        'title' => 'Your order',
+    ],
+    'downloads' => [
+        'meta_title' => 'Download — Nexus',
+        'title' => 'Demo download',
+        'body' => 'This demonstration file is available because you paid for this item.',
+        'file' => 'Download file',
     ],
     'account' => [
         'meta_title' => 'My orders — Nexus',
@@ -170,13 +185,14 @@ return [
         ],
         'roles_title' => 'What each role can do',
         'roles' => [
-            'Buyer' => 'Browse the catalog, hold items in a cart, pay from a wallet, and reopen past orders with download links.',
+            'Buyer' => 'Browse the catalog, hold items in a cart, pay from a wallet, and reopen past orders. Sign in with Google or a one-time email link — no passwords.',
             'Manager' => 'Watch revenue, filter orders by payment status, update delivery, and manage stock.',
             'Admin' => 'Edit products and categories, set promo codes, choose accepted coins, invoice lifetime and underpayment tolerance, and connect Telegram alerts.',
         ],
         'try_title' => 'How to try it',
         'try' => [
             'Open the store as a guest and add a featured kit to the cart.',
+            'Sign in with Google or a one-time email link if you want an account — no passwords.',
             'At checkout enter any name and an @example.com email. Phone hint: phone number in international format.',
             'Pick USDT, BTC or ETH. A large QR and a countdown appear.',
             'Tap Simulate payment (marked as demo) to watch the status move from waiting to confirmed.',
@@ -196,7 +212,88 @@ return [
         'confirm_password' => 'Confirm password',
         'reset' => 'Reset password',
         'email_link' => 'Email password reset link',
-        'demo_hint' => 'Demo accounts are on the home page.',
+        'demo_hint' => 'One-click demo logins. Password for all accounts: demo123456.',
+        'fill' => 'Fill',
+        'google_continue' => 'Continue with Google',
+        'google_failed' => 'Google sign-in did not work. Try again or use a one-time email link.',
+        'or_password' => 'Or use a password',
+        'passwordless_hint' => 'Sign in with Google or a one-time email link — no password needed.',
+        'passwordless_staff' => 'Staff accounts sign in with a password.',
+        'magic_send' => 'Email me a login link',
+        'magic_sent' => 'If that inbox can receive mail, a one-time link is on its way. It expires in 15 minutes.',
+        'magic_failed' => 'The login email could not be sent. Try again in a moment.',
+        'magic_invalid' => 'That login link is invalid, expired, or already used.',
+        'magic_throttled' => 'Too many login links. Wait a few minutes and try again.',
+        'magic_subject' => 'Your Nexus login link',
+        'magic_mail_title' => 'Sign in to Nexus',
+        'magic_mail_body' => 'Tap the button to open your account. The link works once and expires in 15 minutes.',
+        'magic_mail_button' => 'Open my account',
+        'magic_mail_hint' => 'If you did not ask for this, you can ignore the email.',
+        'legal_near_google' => 'By continuing you can read our',
+    ],
+    'legal' => [
+        'privacy' => [
+            'meta_title' => 'Privacy Policy — Nexus',
+            'meta_description' => 'What this demo shop stores, how it is used, and how to ask for deletion.',
+            'kicker' => 'Legal',
+            'title' => 'Privacy Policy',
+            'updated' => 'Last updated: October 2026',
+            'lead' => 'Nexus is a public portfolio demo, not a real shop. This page says what we store when you try it.',
+            'sections' => [
+                [
+                    'title' => 'What we collect',
+                    'body' => "Name and email you type at checkout or when you ask for a login link.\nIf you continue with Google, we receive your Google account email and name.\nOrder details: items, amounts, payment status, and demo download links.",
+                ],
+                [
+                    'title' => 'How we use it',
+                    'body' => 'Only to run this demo: create an invoice, show your order, send demo emails, and let you sign back in. We do not sell or share your data with advertisers or other companies.',
+                ],
+                [
+                    'title' => 'Payments and goods',
+                    'body' => 'Payments here are testnet or simulated. No real money is taken. No real products or licenses are delivered.',
+                ],
+                [
+                    'title' => 'How long we keep it',
+                    'body' => 'Demo data may be wiped when the shop is rebuilt. It is not kept for marketing.',
+                ],
+                [
+                    'title' => 'How to request deletion',
+                    'body' => 'Email us and ask us to delete your account and orders. We will remove them from this demo.',
+                ],
+            ],
+            'contact' => 'Questions or deletion requests:',
+        ],
+        'terms' => [
+            'meta_title' => 'Terms of Service — Nexus',
+            'meta_description' => 'Terms for this portfolio demo shop. No real sales, test payments only.',
+            'kicker' => 'Legal',
+            'title' => 'Terms of Service',
+            'updated' => 'Last updated: October 2026',
+            'lead' => 'These terms cover a public portfolio demo. They are not a contract for a real store.',
+            'sections' => [
+                [
+                    'title' => 'What this is',
+                    'body' => 'Nexus lets you browse sample digital goods and walk through a crypto checkout. It is a demonstration, not a live storefront.',
+                ],
+                [
+                    'title' => 'No real sales',
+                    'body' => 'Nothing here is for sale. Payments are testnet or simulated. You will not receive real products, licenses, or money back.',
+                ],
+                [
+                    'title' => 'Accounts',
+                    'body' => 'You may sign in with a password, Google, or a one-time email link. Staff demo accounts still use a password.',
+                ],
+                [
+                    'title' => 'Your use',
+                    'body' => 'Try the flows. Do not abuse the demo or other visitors. We may reset or take the demo offline at any time.',
+                ],
+                [
+                    'title' => 'Privacy',
+                    'body' => 'What we store and how to ask for deletion is explained on the Privacy Policy page.',
+                ],
+            ],
+            'contact' => 'Questions:',
+        ],
     ],
     'admin' => [
         'meta_description' => 'Nexus operator terminal',
@@ -250,6 +347,7 @@ return [
         'paid_subject' => 'Nexus order :number is paid — your files',
         'paid_title' => 'Payment confirmed',
         'paid_body' => 'Hi :name, payment for order :number is confirmed. Your keys and links are below.',
+        'open_order' => 'Open your order page',
     ],
     'categories' => [
         'templates' => 'Templates',

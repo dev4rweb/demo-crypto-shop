@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import QrPanel from '@/Components/QrPanel.vue';
 import SeoHead from '@/Components/SeoHead.vue';
@@ -7,8 +7,10 @@ import ShopLayout from '@/Layouts/ShopLayout.vue';
 import { useI18n } from '@/composables/useI18n';
 
 const props = defineProps({ payment: Object });
+const page = usePage();
 const { t, locRoute } = useI18n();
 const current = ref(props.payment);
+const user = computed(() => page.props.auth?.user);
 let timer;
 
 const statusLabel = computed(() => t(`pay.${current.value.status}`) || current.value.status);
@@ -29,7 +31,7 @@ const copy = async (value) => {
 };
 
 const refresh = async () => {
-    const res = await fetch(locRoute('checkout.status', { payment: current.value.id }), {
+    const res = await fetch(locRoute('checkout.status', { payment: current.value.uuid }), {
         headers: { Accept: 'application/json' },
     });
     if (res.ok) {
@@ -39,7 +41,7 @@ const refresh = async () => {
 
 const simulate = async () => {
     const token = document.querySelector('meta[name=csrf-token]')?.content;
-    const res = await fetch(locRoute('checkout.simulate', { payment: current.value.id }), {
+    const res = await fetch(locRoute('checkout.simulate', { payment: current.value.uuid }), {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -119,9 +121,13 @@ onUnmounted(() => clearInterval(timer));
                 </article>
             </div>
 
+            <p v-if="paid && current.order_url && !user" class="mt-6 text-sm">
+                <a :href="current.order_url" class="text-cyan">{{ t('pay.open_order') }}</a>
+            </p>
             <div class="mt-8 flex justify-center gap-4">
                 <Link :href="locRoute('welcome')" class="ghost-btn">{{ t('pay.back_store') }}</Link>
-                <Link :href="locRoute('account.orders')" class="ghost-btn">{{ t('pay.orders') }}</Link>
+                <Link v-if="user" :href="locRoute('account.orders')" class="ghost-btn">{{ t('pay.orders') }}</Link>
+                <a v-else-if="current.order_url" :href="current.order_url" class="ghost-btn">{{ t('pay.open_order') }}</a>
             </div>
         </section>
     </ShopLayout>

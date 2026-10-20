@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Str;
 
 class Payment extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'uuid',
         'order_id',
         'driver',
         'coin',
@@ -44,6 +46,20 @@ class Payment extends Model
             'meta' => 'array',
             'rate_used' => 'float',
         ];
+    }
+
+    protected static function booted(): void
+    {
+        static::creating(function (Payment $payment): void {
+            if (! $payment->uuid) {
+                $payment->uuid = (string) Str::uuid();
+            }
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'uuid';
     }
 
     public function order(): BelongsTo

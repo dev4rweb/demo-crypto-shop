@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\AccountOrderController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\GuestOrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -18,6 +21,8 @@ Route::get('/', [CatalogController::class, 'index'])->name('welcome');
 Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
 Route::get('/catalog/{slug}', [CatalogController::class, 'show'])->name('catalog.show');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
+Route::get('/privacy', [LegalController::class, 'privacy'])->name('privacy');
+Route::get('/terms', [LegalController::class, 'terms'])->name('terms');
 
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout');
 Route::post('/checkout/quote', [CheckoutController::class, 'quote'])->name('checkout.quote');
@@ -25,6 +30,9 @@ Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.s
 Route::get('/pay/{payment}', [CheckoutController::class, 'pay'])->name('checkout.pay');
 Route::get('/pay/{payment}/status', [CheckoutController::class, 'status'])->name('checkout.status');
 Route::post('/pay/{payment}/simulate', [CheckoutController::class, 'simulate'])->name('checkout.simulate');
+Route::get('/order/{uuid}', [GuestOrderController::class, 'show'])->name('orders.show');
+Route::get('/downloads/{slug}', [DownloadController::class, 'show'])->name('downloads.show');
+Route::get('/downloads/{slug}/file', [DownloadController::class, 'file'])->name('downloads.file');
 
 Route::get('/dashboard', function () {
     $user = auth()->user();

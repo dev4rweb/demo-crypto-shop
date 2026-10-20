@@ -23,7 +23,7 @@ const money = (cents) => `$${(cents / 100).toLocaleString('en-US', { minimumFrac
                     <a v-if="item.delivery_payload?.url" :href="item.delivery_payload.url" class="text-cyan">{{ item.delivery_payload.url }}</a>
                 </li>
             </ul>
-            <Link v-if="order.payment" :href="locRoute('checkout.pay', { payment: order.payment.id })" class="neon-btn mt-6 inline-flex">
+            <Link v-if="order.payment" :href="locRoute('checkout.pay', { payment: order.payment.uuid })" class="neon-btn mt-6 inline-flex">
                 {{ t('account.open_invoice') }}
             </Link>
         </section>

@@ -26,3 +26,23 @@ function seedCatalog(): Product
         'stock' => 20,
     ]);
 }
+
+function placeDemoPayment(string $email = 'buyer@example.com'): \App\Models\Payment
+{
+    $product = Product::query()->where('slug', 'neon-storefront-kit')->first() ?? seedCatalog();
+
+    return app(\App\Services\CheckoutService::class)->place(
+        ['name' => 'Jordan Hale', 'email' => $email, 'delivery_type' => 'digital'],
+        [['product_id' => $product->id, 'quantity' => 1]],
+        'ETH',
+    );
+}
+
+function confirmDemoPayment(string $email = 'buyer@example.com'): \App\Models\Payment
+{
+    $payment = placeDemoPayment($email);
+    $payment->forceFill(['simulation_started_at' => now()->subSeconds(10)])->save();
+    app(\App\Services\PaymentMonitorService::class)->advanceSimulation($payment->fresh('order.items'));
+
+    return $payment->fresh('order.items');
+}
