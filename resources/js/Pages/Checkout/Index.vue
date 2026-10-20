@@ -38,7 +38,7 @@ const refreshQuote = async () => {
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]')?.content || page.props.csrf_token,
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || page.props.csrf_token,
             'X-Requested-With': 'XMLHttpRequest',
         },
         body: JSON.stringify({ items: form.items, promo: form.promo || null }),
